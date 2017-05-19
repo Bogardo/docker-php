@@ -1,0 +1,10 @@
+application/*
+!application/public
+application/public/*
+!application/public/.gitkeep
+docker/logs/mysql/*
+!docker/logs/mysql/.gitkeep
+docker/logs/nginx/*
+!docker/logs/nginx/.gitkeep
+docker/logs/redis/*
+!docker/logs/redis/.gitkeep

@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+if [ "$1" == "--help" -o "$1" == "-h" ]; then
+	echo "Usage: build {VERSION} [--push]"
+	exit
+fi
+
+if [ -z "$1" ]; then
+  echo -e "\033[31mbuild: No version number specified\e[0m"
+  echo "Usage: build {VERSION} [--push]"
+  exit
+fi
+
+cd $DIR/nginx
+docker build -t bogardo/nginx:$1 -t bogardo/nginx:latest .
+if [ "$2" == "--push" ]; then
+  docker push bogardo/nginx:$1
+  docker push bogardo/nginx:latest
+fi
+
+
+cd $DIR/php
+docker build -t bogardo/php70:$1 -t bogardo/php70:latest .
+if [ "$2" == "--push" ]; then
+  docker push bogardo/php70:$1
+  docker push bogardo/php70:latest
+fi
