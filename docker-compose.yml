@@ -45,6 +45,8 @@ services:
       MYSQL_DATABASE: homestead
       MYSQL_USER: homestead
       MYSQL_PASSWORD: secret
+    ports:
+     - "3306:3306"
     volumes:
      - data:/var/lib/mysql
      - ./docker/logs/mysql:/var/log/mysql
