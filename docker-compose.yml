@@ -10,6 +10,7 @@ services:
     volumes:
      - ./application:/var/www/html
      - ./docker/logs/nginx:/var/log/nginx
+    working_dir: /var/www/html
     networks:
      - appnet
 
@@ -17,6 +18,16 @@ services:
     image: bogardo/php70:1.0
     volumes:
      - ./application:/var/www/html
+    working_dir: /var/www/html
+    networks:
+     - appnet
+
+  node:
+    image: bogardo/node:1.0
+    volumes:
+     - ./application:/var/www/html
+    working_dir: /var/www/html
+    command: tail -f /dev/null
     networks:
      - appnet
 
@@ -37,13 +48,6 @@ services:
     volumes:
      - data:/var/lib/mysql
      - ./docker/logs/mysql:/var/log/mysql
-    networks:
-     - appnet
-
-  node:
-    image: bogardo/node:1.0
-    volumes:
-     - ./application:/var/www/html
     networks:
      - appnet
 
