@@ -20,6 +20,13 @@ if [ "$2" == "--push" ]; then
   docker push bogardo/nginx:latest
 fi
 
+cd $DIR/node
+docker build -t bogardo/node:$1 -t bogardo/node:latest .
+if [ "$2" == "--push" ]; then
+  docker push bogardo/node:$1
+  docker push bogardo/node:latest
+fi
+
 
 cd $DIR/php
 docker build -t bogardo/php70:$1 -t bogardo/php70:latest .

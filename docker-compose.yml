@@ -41,7 +41,7 @@ services:
      - appnet
 
   node:
-    image: node:7.10
+    image: bogardo/node:1.0
     volumes:
      - ./application:/var/www/html
     networks:
